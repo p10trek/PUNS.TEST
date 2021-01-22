@@ -5,6 +5,7 @@ using Xunit;
 using Microsoft.AspNetCore.TestHost;
 using System.Net.Http;
 using Microsoft.EntityFrameworkCore;
+using PunsApi;
 
 namespace PUNS.TESTS
 {
@@ -16,6 +17,7 @@ namespace PUNS.TESTS
 
         public TestServerDependent(TestServerFixture fixture)
         {
+            Params.IsTest = true;
             _fixture = fixture;
         }
 

@@ -9,13 +9,13 @@ using PunsApi.Services.Interfaces;
 using Microsoft.Net.Http.Headers;
 namespace PUNS.TESTS
 {
-    public class AuthenticationControllerUnitTest : TestServerDependent
+    public class AuthenticationControllerIntegrationTest : TestServerDependent
     {
         private AuthenticationController controller;
         private IAuthenticationService _authenticationService;
         private readonly AppDbContext dbContext;
 
-        public AuthenticationControllerUnitTest(TestServerFixture fixture) : base(fixture)
+        public AuthenticationControllerIntegrationTest(TestServerFixture fixture) : base(fixture)
         {
         
         }
@@ -39,8 +39,7 @@ namespace PUNS.TESTS
             var RevokeTokenResponse = await controller
                 .RevokeToken(new PunsApi.Requests.Authentication.RefreshTokenRequest { RefreshToken = ((PunsApi.Services.ServicesResponses.ServiceResponse<PunsApi.ViewModels.Authenticate.AuthenticateViewModel>)((Microsoft.AspNetCore.Mvc.ObjectResult)refreshTokenResponse).Value).Data.RefreshToken });
             Assert.True(((Microsoft.AspNetCore.Mvc.ObjectResult)RevokeTokenResponse).StatusCode == 200);
-            //var FetchUserResponse = await controller.FetchUser();
-            //Assert.True(((Microsoft.AspNetCore.Mvc.ObjectResult)FetchUserResponse).StatusCode == 200);
         }
+
     } 
 }

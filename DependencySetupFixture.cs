@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using PunsApi;
+using PunsApi.Controllers;
 using PunsApi.Data;
 using PunsApi.Services;
 using PunsApi.Services.Interfaces;
@@ -16,9 +18,12 @@ namespace PUNS.TESTS
         {
             var serviceCollection = new ServiceCollection();
             // serviceCollection.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase(databaseName: "TestDatabase"));
+            serviceCollection.AddTransient(typeof(BaseController));
             serviceCollection.AddTransient<IGamesService, GamesService>();
 
             ServiceProvider = serviceCollection.BuildServiceProvider();
+            Params.IsTest = true;
+            
         }
     }
 }
